@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-css": "node-sass --include-path project project/scss --output build/css/styles.css",
+    "compile-js": "browserify project/js/**.js > build/js/bundle.js"
   },
   "repository": {
     "type": "git",
