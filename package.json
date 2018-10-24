@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-css": "node-sass --include-path project project/scss --output build/css/styles.css",
-    "compile-js": "browserify project/js/**.js > build/js/bundle.js"
+    "compile-js": "browserify project/js/**.js > build/js/bundle.js",
+    "compile-pug": "pug project/index.pug --out build/",
+    "compile": "npm run compile-css && npm run compile-js && npm run compile-pug",
+    "start": "nodemon -e js,scss,pug -x \"npm run compile && npm run server\" --ignore build/",
+    "server": "cd build && http-server . -p 8000"
   },
   "repository": {
     "type": "git",
@@ -17,8 +21,13 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^16.2.3",
+    "http-server": "^0.11.1",
     "node-sass": "^4.9.4",
     "nodemon": "^1.18.4",
     "pug-cli": "^1.0.0-alpha6"
+  },
+  "dependencies": {
+    "when-dom-ready": "^1.2.12",
+    "window": "^4.2.5"
   }
 }
