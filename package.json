@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-	"config": {
-		"src": "example-project",
-		"dest": "build"
-	},
+  "config": {
+    "src": "example-project",
+    "dest": "build"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-css": "node-sass --include-path $npm_package_config_src $npm_package_config_src/scss --output $npm_package_config_dest/css",
@@ -14,7 +14,9 @@
     "compile-pug": "pug $npm_package_config_src/index.pug --out $npm_package_config_dest/",
     "compile": "npm run compile-css && npm run compile-js && npm run compile-pug",
     "start": "nodemon -e js,scss,pug -x \"npm run compile && npm run server\" --ignore $npm_package_config_dest/",
-    "server": "cd $npm_package_config_dest && http-server . -p 8000"
+    "server": "cd $npm_package_config_dest && http-server . -p 8000",
+		"deploy-gh": "npm run gh-pages",
+		"gh-pages": "gh-pages -d $npm_package_config_dest -b gh-pages"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^16.2.3",
+    "gh-pages": "^2.0.1",
     "http-server": "^0.11.1",
     "node-sass": "^4.9.4",
     "nodemon": "^1.18.4",
