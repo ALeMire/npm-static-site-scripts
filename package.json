@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+	"config": {
+		"src": "example-project",
+		"dest": "build"
+	},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-css": "node-sass --include-path example-project example-project/scss --output build/css",
-    "compile-js": "browserify example-project/js/**.js > build/js/bundle.js",
-    "compile-pug": "pug example-project/index.pug --out build/",
+    "compile-css": "node-sass --include-path $npm_package_config_src $npm_package_config_src/scss --output $npm_package_config_dest/css",
+    "compile-js": "browserify example-project/js/**.js > $npm_package_config_dest/js/bundle.js",
+    "compile-pug": "pug $npm_package_config_src/index.pug --out $npm_package_config_dest/",
     "compile": "npm run compile-css && npm run compile-js && npm run compile-pug",
-    "start": "nodemon -e js,scss,pug -x \"npm run compile && npm run server\" --ignore build/",
-    "server": "cd build && http-server . -p 8000"
+    "start": "nodemon -e js,scss,pug -x \"npm run compile && npm run server\" --ignore $npm_package_config_dest/",
+    "server": "cd $npm_package_config_dest && http-server . -p 8000"
   },
   "repository": {
     "type": "git",
